@@ -112,7 +112,8 @@ while($row = mysqli_fetch_assoc($result)){
     if($asdd==1){
         $sql2 = "select * from transaksi_bahan a join barang b on (a.id_bahan = b.id_barang) where tgl='".$_GET['tgl']."' and nama_kategori='".$row['nama_kategori']."'";
     }else if($asdd==2){
-        $sql2 = "select * , max(jumlah) max,avg(jumlah) avg,sum(jumlah) from transaksi_bahan a join barang b on (a.id_bahan = b.id_barang) where date_format(tgl,'%c')='".$_GET['bln']."' and date_format(tgl,'%Y') = '".$_GET['thn']."' and nama_kategori='".$row['nama_kategori']."' group by id_bahan";
+        $sql2 = "select * , max(jumlah) max,avg(jumlah) avg,sum(jumlah) aa from transaksi_bahan a join barang b on (a.id_bahan = b.id_barang) where date_format(tgl,'%c')='".$_GET['bln']."' and date_format(tgl,'%Y') = '".$_GET['thn']."' and nama_kategori='".$row['nama_kategori']."' group by id_bahan";
+        //echo $sql2;
     }
     
     
@@ -125,7 +126,7 @@ while($row = mysqli_fetch_assoc($result)){
             if($asdd==1){
                 $isian .="<tr align='center'><td>".$no."</td><td text-align: 'left'>".$row2['nama_barang']."</td><td>".$row2['satuan']."</td><td>".$row2['jumlah']."</td></tr>";        
                 }else if($asdd==2){
-                    $isian .="<tr align='center'><td>".$no."</td><td>".$row2['nama_barang']."</td><td>".$row2['jumlah']."</td><td>".$row2['satuan']."</td><td>".number_format($row2['avg'],1)."</td><td>".$row2['max']."</td></tr>";
+                    $isian .="<tr align='center'><td>".$no."</td><td>".$row2['nama_barang']."</td><td>".number_format($row2['aa'],1)."</td><td>".$row2['satuan']."</td><td>".number_format($row2['avg'],1)."</td><td>".$row2['max']."</td></tr>";
                 }
             //$isian .="<tr align='center'><td>".$no."</td><td>".$row2['nama_barang']."</td><td>".$row2['satuan']."</td><td>".$row2['jumlah']."</td><td>".number_format($row2['avg'],1)."</td><td>".$row2['max']."</td></tr>";
             //$total += $row2['total'];

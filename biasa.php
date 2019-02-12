@@ -5,7 +5,10 @@ $password = "";
 $dbname = "bimo";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
-
+session_start();
+if(!isset($_SESSION['username'])){
+  header("Location:login.php?b=2");
+}
 
 ?>
 <html lang="en">

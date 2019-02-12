@@ -3,7 +3,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "bimo";
-
+session_start();
 $conn = new mysqli($servername, $username, $password, $dbname);
 if(isset($_POST['simpan'])){
 	$sql = "select * from bahan_makanan where id_makanan='".$_GET['id_makanan']."'";
@@ -29,7 +29,10 @@ if(isset($_POST['tambah2'])){
 		$query="insert into bahan_makanan values('".$abb."','".$_GET['id_makanan']."','".$_POST['piltambahbahan']."','".$_POST['tambahbahan']."','".$asd."')";
 		//echo $query;
 		$conn->query($query);
-	}
+  }
+  if(!isset($_SESSION['username'])){
+    header("Location:login.php?b=2");
+  }
 ?>
 <!DOCTYPE html>
 <html>

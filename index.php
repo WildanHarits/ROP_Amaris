@@ -8,6 +8,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 session_start();
 $query="delete from hitung";
   $conn->query($query);
+
 ?>
 <?php
     if(isset($_POST['laporan'])){
